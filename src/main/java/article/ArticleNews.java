@@ -1,23 +1,23 @@
 package article;
 
-public class ArcticleNews {
-    private int id;
+public class ArticleNews {
+    private Integer id;
     private String title;
     private String body;
     private String author;
 
-    public ArcticleNews(int id, String title, String body, String author) {
+    public ArticleNews(int id, String title, String body, String author) {
         this.id = id;
         this.title = title;
         this.body = body;
         this.author = author;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
