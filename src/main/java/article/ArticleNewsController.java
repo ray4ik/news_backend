@@ -36,4 +36,10 @@ public class ArticleNewsController {
     public void delete(@PathVariable Integer id){
         service.delete(id);
     }
+
+    @PutMapping("/{id}")
+    public ArticleNews update(@RequestBody ArticleNews updatedArticle){
+        service.update(updatedArticle);
+        return updatedArticle;
+    }
 }

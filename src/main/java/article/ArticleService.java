@@ -52,4 +52,14 @@ public class ArticleService {
                 .filter(a -> !a.getId().equals(id))
                 .collect((Collectors.toList()));
     }
+
+    public void update(ArticleNews updatedArticle) {
+        for (ArticleNews a : listArticle){
+            if (a.getId().equals(updatedArticle.getId())){
+                a.setTitle(updatedArticle.getTitle());
+                a.setBody(updatedArticle.getBody());
+                a.setAuthor(updatedArticle.getAuthor());
+            }
+        }
+    }
 }
