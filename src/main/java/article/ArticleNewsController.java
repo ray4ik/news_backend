@@ -9,25 +9,31 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@RequestMapping("/articles")
 public class ArticleNewsController {
 
     @Autowired
     private ArticleService service;
 
-    @GetMapping("/articles")
+    @GetMapping("")
     public  List<ArticleNews> getAllListArcticle() {
         return service.getAllListArcticle();
     }
 
-    @GetMapping("/articles/{id}")
+    @GetMapping("/{id}")
     public ArticleNews getById(@PathVariable Integer id) {
             return service.getById(id)
                     .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
-    @PostMapping("/articles")
-    public ArticleNews create(@RequestBody ArticleNews article){
-        service.create(article);
-        return article;
+    @PostMapping("")
+    public ArticleNews create(@RequestBody ArticleNews newArticle){
+        service.create(newArticle);
+        return newArticle;
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Integer id){
+        service.delete(id);
     }
 }
