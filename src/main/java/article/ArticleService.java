@@ -11,16 +11,18 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class ArticleService {
 
+    public static Integer idCounter = 3;
     private static List<ArticleNews> listArticle = new ArrayList<>();
 
     static
     {
         listArticle.add(new ArticleNews(1, "5 best bakery in Stockholm", "Petrus, Lillabrorsbageri, Gunnarskonditori, Brod och salt, Fabrique",  "ray4ik"));
-        listArticle.add(new ArticleNews(3, "5 best  Places in Stockholm", "Vasa, Haga, Gamla Stan, Djurgarden, Hammarby",  "ray4ik"));
+        listArticle.add(new ArticleNews(2, "5 best  Places in Stockholm", "Vasa, Haga, Gamla Stan, Djurgarden, Hammarby",  "ray4ik"));
     }
 
     public  List<ArticleNews> getAllListArcticle() {
@@ -34,10 +36,20 @@ public class ArticleService {
                 .findFirst();
     }
 
+    public ArticleNews create(ArticleNews newArticle){
+        add(newArticle);
+        return newArticle;
+    }
 
-    @PostMapping("/articles")
-    public ArticleNews create(@RequestBody ArticleNews article){
-        listArticle.add(article);
-        return  article;
+    static private boolean add(ArticleNews newArcitle) {
+        newArcitle.setId(idCounter);
+        idCounter++;
+        return listArticle.add(newArcitle);
+    }
+
+    public void delete (Integer id) {
+        listArticle = listArticle.stream()
+                .filter(a -> !a.getId().equals(id))
+                .collect((Collectors.toList()));
     }
 }
