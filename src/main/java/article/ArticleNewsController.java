@@ -11,7 +11,8 @@ import java.util.List;
 @RestController
 public class ArticleNewsController {
 
-    private ArticleService service = new ArticleService();
+    @Autowired
+    private ArticleService service;
 
     @GetMapping("/articles")
     public  List<ArticleNews> getAllListArcticle() {
