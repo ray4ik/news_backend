@@ -1,5 +1,6 @@
 package sda.forum.api.article;
 
+import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -37,7 +38,7 @@ public class ArticleNewsController {
     }
 
     @PutMapping("/{id}")
-    public ArticleNews update(@RequestBody ArticleNews updatedArticle){
+    public ArticleNews update(@RequestBody ArticleNews updatedArticle) throws NotFoundException {
         service.update(updatedArticle);
         return updatedArticle;
     }

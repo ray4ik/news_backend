@@ -1,7 +1,9 @@
 package sda.forum.api.article;
 
+import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 
@@ -41,8 +43,12 @@ public class ArticleService {
        repo.deleteById(id);
     }
 
-    public void update(ArticleNews updatedArticle) {
-        repo.findById(updatedArticle.getId());
-        //repo.save(updatedArticle);
+    public void update(ArticleNews updatedArticle) throws NotFoundException {
+        ArticleNews old = repo.findById(updatedArticle.getId())
+                .orElseThrow(() -> new NotFoundException(HttpStatus.NOT_FOUND.toString()));
+        old.setBody(updatedArticle.getBody());
+        old.setTitle(updatedArticle.getTitle());
+        old.setAuthor(updatedArticle.getAuthor());
+        repo.save(updatedArticle);
     }
 }
