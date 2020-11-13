@@ -32,20 +32,20 @@ Setup a PostgreSQL database and make sure that you have the correct configuratio
 
 ## Task 2 (Articles)
 
-Article is the core entity in our project. An sda.forum.api.article object will have the following fields:
+Article is the core entity in our project. An article object will have the following fields:
 
-* `title` the title of the sda.forum.api.article (String).
-* `body` text body of the sda.forum.api.article (String).
-* `authorName` the name of the author who created the sda.forum.api.article (String).
-* Don't forget to add an `id` field as well to identify each sda.forum.api.article
+* `title` the title of the article (String).
+* `body` text body of the article (String).
+* `authorName` the name of the author who created the article (String).
+* Don't forget to add an `id` field as well to identify each article
 
-Example sda.forum.api.article (JSON):
+Example article (JSON):
 
 ```javascript
 {
     "id": 1,
     "title": "10 reasons to learn Spring",
-    "body": "In this sda.forum.api.article I'll be listing 10 reasons why you should learn spring and use it in your next project...",
+    "body": "In this article I'll be listing 10 reasons why you should learn spring and use it in your next project...",
     "authorName": "John Smith"
 }
 ```
@@ -55,31 +55,31 @@ Create a REST API for articles with the following specification:
 | HTTP Method | HTTP Path | Action |
 | ------------|-----------|--------|
 | `GET` |`/articles` | return all articles. |
-| `GET` | `/articles/{id}` | return a specific sda.forum.api.article based on the provided id.|
-| `POST`| `/articles` | create a new sda.forum.api.article.|
-| `PUT` | `/articles` | update the given sda.forum.api.article.|
-| `DELETE` | `/articles` | delete the given sda.forum.api.article.|
+| `GET` | `/articles/{id}` | return a specific article based on the provided id.|
+| `POST`| `/articles` | create a new article.|
+| `PUT` | `/articles` | update the given article.|
+| `DELETE` | `/articles` | delete the given article.|
 
 ## Task 3 (Comments)
 
-We want our visitors to be able to comment the different articles. Each sda.forum.api.article can have zero or more comments. The comment object has the following fields:
+We want our visitors to be able to comment the different articles. Each article can have zero or more comments. The comment object has the following fields:
 
 * `id`
 * `body` the comment text body (String)
 * `authorName` the name of the author of the comment
-* `sda.forum.api.article` Don't forget to add the appropriate relationship annotation to link comments and articles.
+* `article` Don't forget to add the appropriate relationship annotation to link comments and articles.
 
 Example comment
 
 ```javascript
 {
     "id": 1,
-    "body": "This sda.forum.api.article is very well written",
+    "body": "This article is very well written",
     "authorName": "John Smith",
-    "sda.forum.api.article": {
+    "article": {
         "id": 1,
         "title": "10 reasons to learn Spring",
-        "body": "In this sda.forum.api.article I'll be listing 10 reasons why you should learn spring and use it in your next project...",
+        "body": "In this article I'll be listing 10 reasons why you should learn spring and use it in your next project...",
         "authorName": "John Smith"
     }
 }
@@ -98,7 +98,7 @@ Create a REST API for comments with the following specification:
 
 ## Task 4 (Topics)
 
-We want to categorize our articles by topics. Each topic can have many articles and each sda.forum.api.article can belong to many topics. A topic object will have the following fields:
+We want to categorize our articles by topics. Each topic can have many articles and each article can belong to many topics. A topic object will have the following fields:
 
 * `id`
 * `name` topic name (String)
@@ -122,4 +122,4 @@ Add a new endpoint to the `articles` API so that you can get articles by a speci
 
 ## [Optional] Task 5 (Reactions)
 
-To make our application more interactive we might want to add the ability to add sda.forum.api.article and comment reactions (likes, dislikes, ...). How would you model this problem? What entities do you need? What relationships do you need to add? What API endpoints do you need to create? Think about these questions and try to write a design document and implement it.
+To make our application more interactive we might want to add the ability to add article and comment reactions (likes, dislikes, ...). How would you model this problem? What entities do you need? What relationships do you need to add? What API endpoints do you need to create? Think about these questions and try to write a design document and implement it.
