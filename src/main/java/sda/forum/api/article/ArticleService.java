@@ -43,12 +43,7 @@ public class ArticleService {
        repo.deleteById(id);
     }
 
-    public void update(ArticleNews updatedArticle) throws NotFoundException {
-        ArticleNews old = repo.findById(updatedArticle.getId())
-                .orElseThrow(() -> new NotFoundException(HttpStatus.NOT_FOUND.toString()));
-        old.setBody(updatedArticle.getBody());
-        old.setTitle(updatedArticle.getTitle());
-        old.setAuthor(updatedArticle.getAuthor());
+    public void update(ArticleNews updatedArticle)  {
         repo.save(updatedArticle);
     }
 }

@@ -37,8 +37,9 @@ public class ArticleNewsController {
         service.delete(id);
     }
 
-    @PutMapping("/{id}")
-    public ArticleNews update(@RequestBody ArticleNews updatedArticle) throws NotFoundException {
+    @PutMapping("")
+    public ArticleNews update(@RequestBody ArticleNews updatedArticle)
+    {
         service.update(updatedArticle);
         return updatedArticle;
     }
