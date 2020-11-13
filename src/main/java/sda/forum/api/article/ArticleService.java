@@ -17,7 +17,6 @@ public class ArticleService {
 
     @Autowired
     private ArticleNewsRepository repo;
-    private static Long idCounter = 1L;
 
 
     public  List<ArticleNews> getAllListArcticle(String sort) {
@@ -32,8 +31,6 @@ public class ArticleService {
     }
 
     public ArticleNews create(ArticleNews newArticle){
-        newArticle.setId(idCounter);
-        idCounter++;
         return repo.save(newArticle);
     }
 
