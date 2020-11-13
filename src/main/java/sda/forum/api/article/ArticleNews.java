@@ -1,23 +1,39 @@
-package article;
+package sda.forum.api.article;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "articleNews")
 public class ArticleNews {
-    private Integer id;
+
+    @Id
+    @Column(name = "id")
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "title")
     private String title;
+
+    @Column(name = "body")
     private String body;
+
+    @Column(name = "author")
     private String author;
 
-    public ArticleNews(int id, String title, String body, String author) {
+    public ArticleNews() {
+    }
+    public ArticleNews(Long id, String title, String body, String author) {
         this.id = id;
         this.title = title;
         this.body = body;
         this.author = author;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
