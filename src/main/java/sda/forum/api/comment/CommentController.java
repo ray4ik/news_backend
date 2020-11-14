@@ -14,8 +14,20 @@ public class CommentController {
     private CommentService commentService;
 
     @GetMapping("")
-    public List<Comment> getAll() {
-        return commentService.getAll();
+    public List<Comment> getAll(
+            @RequestParam (required = false) String sort,
+            @RequestParam (required = false) Long articleId) {
+
+        if (sort == null) {
+            sort = "title";
+        }
+
+        if (articleId == null ){
+            return commentService.getAll(sort);
+        } else {
+              return commentService.getAllbyArticleId(articleId);
+        }
+
     }
 
     @GetMapping("/{id}")

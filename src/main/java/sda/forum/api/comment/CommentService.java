@@ -2,10 +2,11 @@ package sda.forum.api.comment;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import sda.forum.api.article.ArticleNewsRepository;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class CommentService {
@@ -14,6 +15,12 @@ public class CommentService {
 
     public List<Comment> getAll(){
         return repoCo.findAll();
+    }
+
+    public List<Comment> getAll(String sort) {
+        return repoCo.findAll().stream()
+                .sorted(Comparator.comparing(sort.equals("title") ? Comment::getTitle : Comment::getAuthor))
+                .collect(Collectors.toList());
     }
 
     public Optional<Comment> getById(Long id)
@@ -31,5 +38,9 @@ public class CommentService {
 
     public void delete (Long id) {
         repoCo.deleteById(id);
+    }
+
+    public List<Comment> getAllbyArticleId(Long articleId) {
+        return repoCo.findAllByArticleId(articleId);
     }
 }
