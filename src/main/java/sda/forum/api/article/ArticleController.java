@@ -1,6 +1,5 @@
 package sda.forum.api.article;
 
-import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -10,24 +9,27 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/articles")
-public class ArticleNewsController {
+public class ArticleController {
 
     @Autowired
     private ArticleService service;
 
     @GetMapping("")
-    public  List<ArticleNews> getAllListArcticle(@RequestParam String sort) {
+    public  List<Article> getAllListArcticle(@RequestParam (required = false) String sort) {
+        if (sort == null) {
+            sort = "title";
+        }
         return service.getAllListArcticle(sort);
     }
 
     @GetMapping("/{id}")
-    public ArticleNews getById(@PathVariable Long id) {
+    public Article getById(@PathVariable Long id) {
             return service.getById(id)
                     .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
     @PostMapping("")
-    public ArticleNews create(@RequestBody ArticleNews newArticle){
+    public Article create(@RequestBody Article newArticle){
         service.create(newArticle);
         return newArticle;
     }
@@ -38,7 +40,7 @@ public class ArticleNewsController {
     }
 
     @PutMapping("")
-    public ArticleNews update(@RequestBody ArticleNews updatedArticle)
+    public Article update(@RequestBody Article updatedArticle)
     {
         service.update(updatedArticle);
         return updatedArticle;

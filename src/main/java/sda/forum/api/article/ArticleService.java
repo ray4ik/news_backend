@@ -1,9 +1,7 @@
 package sda.forum.api.article;
 
-import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 
@@ -16,21 +14,25 @@ import java.util.stream.Collectors;
 public class ArticleService {
 
     @Autowired
-    private ArticleNewsRepository repo;
+    private ArticleRepository repo;
 
 
-    public  List<ArticleNews> getAllListArcticle(String sort) {
-        return (List<ArticleNews>) repo.findAll().stream()
-                .sorted(Comparator.comparing(sort.equals("title") ? ArticleNews::getTitle : ArticleNews::getAuthor))
+    public  List<Article> getAllListArcticle(String sort) {
+        return repo.findAll().stream()
+                .sorted(Comparator.comparing(sort.equals("title") ? Article::getTitle : Article::getAuthor))
                 .collect(Collectors.toList());
     }
 
+    public  List<Article> getAllListArcticle() {
+        return repo.findAll();
+    }
 
-    public Optional<ArticleNews> getById(Long id) {
+
+    public Optional<Article> getById(Long id) {
         return repo.findById(id);
     }
 
-    public ArticleNews create(ArticleNews newArticle){
+    public Article create(Article newArticle){
         return repo.save(newArticle);
     }
 
@@ -40,7 +42,7 @@ public class ArticleService {
        repo.deleteById(id);
     }
 
-    public void update(ArticleNews updatedArticle)  {
+    public void update(Article updatedArticle)  {
         repo.save(updatedArticle);
     }
 }

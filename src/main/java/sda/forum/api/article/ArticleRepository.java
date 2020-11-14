@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 
 
 @Repository
-public interface ArticleNewsRepository extends JpaRepository<ArticleNews, Long> {
+public interface ArticleRepository extends JpaRepository<Article, Long> {
 }
