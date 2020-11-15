@@ -1,6 +1,9 @@
 package sda.forum.api.article;
 
+import sda.forum.api.topic.Topic;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "articleNews")
@@ -17,16 +20,19 @@ public class Article {
     @Column(name = "body")
     private String body;
 
-    @Column(name = "author")
-    private String author;
+    @Column(name = "authorName")
+    private String authorName;
+
+    @ManyToMany
+    private List<Topic> topics;
 
     public Article() {
     }
-    public Article(Long id, String title, String body, String author) {
+    public Article(Long id, String title, String body, String authorName) {
         this.id = id;
         this.title = title;
         this.body = body;
-        this.author = author;
+        this.authorName = authorName;
     }
 
     public Long getId() {
@@ -53,11 +59,19 @@ public class Article {
         this.body = body;
     }
 
-    public String getAuthor() {
-        return author;
+    public String getAuthorName() {
+        return authorName;
     }
 
-    public void setAuthor(String author) {
-        this.author = author;
+    public void setAuthorName(String authorName) {
+        this.authorName = authorName;
+    }
+
+    public List<Topic> getTopics() {
+        return topics;
+    }
+
+    public void setTopics(List<Topic> topics) {
+        this.topics = topics;
     }
 }

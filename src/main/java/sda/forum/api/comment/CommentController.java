@@ -19,13 +19,13 @@ public class CommentController {
             @RequestParam (required = false) Long articleId) {
 
         if (sort == null) {
-            sort = "title";
+            sort = "authorName";
         }
 
         if (articleId == null ){
             return commentService.getAll(sort);
         } else {
-              return commentService.getAllbyArticleId(articleId);
+            return commentService.getAllbyArticleId(articleId);
         }
 
     }

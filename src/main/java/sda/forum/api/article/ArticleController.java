@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+import sda.forum.api.topic.Topic;
 
 import java.util.List;
 
@@ -15,11 +16,20 @@ public class ArticleController {
     private ArticleService service;
 
     @GetMapping("")
-    public  List<Article> getAllListArcticle(@RequestParam (required = false) String sort) {
+    public  List<Article> getAllListArcticle(
+            @RequestParam (required = false) String sort,
+            @RequestParam (required = false) Long topicId
+                                             ) {
         if (sort == null) {
             sort = "title";
         }
-        return service.getAllListArcticle(sort);
+        if (topicId != null)
+        {
+            return service.gelAllByTopicId(topicId);
+        }
+        else {
+            return service.getAllListArcticle(sort);
+        }
     }
 
     @GetMapping("/{id}")

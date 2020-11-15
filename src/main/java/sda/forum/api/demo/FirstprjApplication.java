@@ -7,9 +7,9 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
-@ComponentScan({"sda.forum.api.article", "sda.forum.api.comment"})
-@EntityScan({"sda.forum.api.article", "sda.forum.api.comment"})
-@EnableJpaRepositories({"sda.forum.api.article", "sda.forum.api.comment" })
+@ComponentScan({"sda.forum.api.article", "sda.forum.api.comment", "sda.forum.api.topic"})
+@EntityScan({"sda.forum.api.article", "sda.forum.api.comment", "sda.forum.api.topic"})
+@EnableJpaRepositories({"sda.forum.api.article", "sda.forum.api.comment", "sda.forum.api.topic"})
 public class FirstprjApplication {
 
 	public static void main(String[] args) {

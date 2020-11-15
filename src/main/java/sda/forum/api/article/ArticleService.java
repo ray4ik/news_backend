@@ -3,6 +3,7 @@ package sda.forum.api.article;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
+import sda.forum.api.topic.Topic;
 
 
 import java.util.Comparator;
@@ -19,7 +20,7 @@ public class ArticleService {
 
     public  List<Article> getAllListArcticle(String sort) {
         return repo.findAll().stream()
-                .sorted(Comparator.comparing(sort.equals("title") ? Article::getTitle : Article::getAuthor))
+                .sorted(Comparator.comparing(sort.equals("title") ? Article::getTitle : Article::getAuthorName))
                 .collect(Collectors.toList());
     }
 
@@ -44,5 +45,9 @@ public class ArticleService {
 
     public void update(Article updatedArticle)  {
         repo.save(updatedArticle);
+    }
+
+    public List<Article> gelAllByTopicId(Long topicId) {
+        return repo.findAllByTopics_id(topicId);
     }
 }

@@ -13,14 +13,11 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "title")
-    private String title;
-
     @Column(name = "body")
     private String body;
 
-    @Column(name = "author")
-    private String author;
+    @Column(name = "authorName")
+    private String authorName;
 
     //many Comments to a singe article
     @ManyToOne
@@ -28,10 +25,9 @@ public class Comment {
 
     public Comment() {}
 
-    public Comment(String title, String body, String author, Article article) {
-        this.title = title;
+    public Comment(String title, String body, String authorName, Article article) {
         this.body = body;
-        this.author = author;
+        this.authorName = authorName;
         this.article = article;
     }
 
@@ -39,32 +35,24 @@ public class Comment {
         return id;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
     public String getBody() {
         return body;
     }
 
-    public String getAuthor() {
-        return author;
+    public String getAuthorName() {
+        return authorName;
     }
 
     public void setId(Long id) {
         this.id = id;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public void setBody(String body) {
         this.body = body;
     }
 
-    public void setAuthor(String author) {
-        this.author = author;
+    public void setAuthorName(String author) {
+        this.authorName = author;
     }
 
     public Article getArticle() {
