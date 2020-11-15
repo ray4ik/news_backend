@@ -25,7 +25,7 @@ public class CommentController {
         if (articleId == null ){
             return commentService.getAll(sort);
         } else {
-              return commentService.getAllbyArticleId(articleId);
+            return commentService.getAllbyArticleId(articleId);
         }
 
     }
