@@ -17,8 +17,9 @@ public class Topic {
     private String name;
 
     // Each topic can have many articles and each article can belong to many topics
-    //@ManyToMany
-    //private Article article;
+    //Many topics to one Article
+    @ManyToOne(cascade = {CascadeType.ALL})
+    private Article article;
 
     public Topic () {
     }
@@ -43,11 +44,11 @@ public class Topic {
         this.id = id;
     }
 
-   /* public Article getArticle() {
+    public Article getArticle() {
         return article;
     }
 
     public void setArticle(Article article) {
         this.article = article;
-    } */
+    }
 }

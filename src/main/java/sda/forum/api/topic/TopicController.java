@@ -16,9 +16,19 @@ public class TopicController {
     private TopicService topicService;
 
     @GetMapping("")
-    public List<Topic> getAll()
-    {
-        return topicService.getAll();
+    public List<Topic> getAll(
+            @RequestParam (required = false) String sort,
+            @RequestParam (required = false) Long articleId) {
+
+        if (sort == null) {
+            sort = "name";
+        }
+
+        if (articleId == null ){
+            return topicService.getAll(sort);
+        } else {
+            return topicService.getAllbyArticleId(articleId);
+        }
     }
 
     @GetMapping("/{id}")
