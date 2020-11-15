@@ -19,7 +19,7 @@ public class ArticleService {
 
     public  List<Article> getAllListArcticle(String sort) {
         return repo.findAll().stream()
-                .sorted(Comparator.comparing(sort.equals("title") ? Article::getTitle : Article::getAuthor))
+                .sorted(Comparator.comparing(sort.equals("title") ? Article::getTitle : Article::getAuthorName))
                 .collect(Collectors.toList());
     }
 

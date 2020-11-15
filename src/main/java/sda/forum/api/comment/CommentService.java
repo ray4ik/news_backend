@@ -19,7 +19,7 @@ public class CommentService {
 
     public List<Comment> getAll(String sort) {
         return repoCo.findAll().stream()
-                .sorted(Comparator.comparing(sort.equals("title") ? Comment::getTitle : Comment::getAuthor))
+                .sorted(Comparator.comparing(sort.equals("authorName") ? Comment::getAuthorName : Comment::getBody))
                 .collect(Collectors.toList());
     }
 

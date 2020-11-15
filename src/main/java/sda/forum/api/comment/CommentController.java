@@ -19,7 +19,7 @@ public class CommentController {
             @RequestParam (required = false) Long articleId) {
 
         if (sort == null) {
-            sort = "title";
+            sort = "authorName";
         }
 
         if (articleId == null ){
